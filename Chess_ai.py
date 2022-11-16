@@ -1,6 +1,3 @@
-Python 3.9.13 (tags/v3.9.13:6de2ca5, May 17 2022, 16:36:42) [MSC v.1929 64 bit (AMD64)] on win32
-Type "help", "copyright", "credits" or "license()" for more information.
->>> #qekebdlw/bajuesxh/manshdyr/iwjsncbv/asdfrewq/mnbvcfgh/asderfgt/mlkjnbhg
 def getchessboard():
   def getfen():
     x=list(input())
@@ -32,6 +29,7 @@ def getchessboard():
 chessboard=getchessboard()
 for i in chessboard:
   print(i)
+
 def searchpos(pos,chessboard):
   pos=list(pos)
   if pos[0] == "a":
@@ -68,8 +66,8 @@ def searchpos(pos,chessboard):
     y=7
   return chessboard[y][x]
 def case(x):
-  uppercase = list(QWERTYUIOPASDFGHJKLZXCVBNM)
-  lowercase = list(qwertyuiopasdfghjklzxcvbnm)
+  uppercase = list("QWERTYUIOPASDFGHJKLZXCVBNM")
+  lowercase = list("qwertyuiopasdfghjklzxcvbnm")
   if x in uppercase:
     return "uppercase"
   elif x in lowercase:
@@ -81,7 +79,7 @@ def legality(startpos,endpos,board):
   y=searchpos(endpos,board)
   if case(x)==case(y) or case(x)=="none":
     return False
-"""else:
+  else:
     if x.lower == "r" :
     elif x.lower = "b":
     elif x.lower = "n":
@@ -89,6 +87,6 @@ def legality(startpos,endpos,board):
     elif x.lower = "q":
       
     return True
-    """
-def move(startpos,endpos)
-  if legality == True
+
+# def move(startpos,endpos):
+#   if legality == True
