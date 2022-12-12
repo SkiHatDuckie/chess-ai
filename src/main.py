@@ -1,34 +1,36 @@
-def getchessboard():
-    def getfen():
-        x=list(input())
-        return x
+def get_fen(fen):
+    return fen.split("/")
 
 
-    fen=getfen()
-    fenlength = len(fen)
-    x=0
-    line = 0
-    chessboard=[[],[],[],[],[],[],[],[]]
-    while x<fenlength:
-        if fen[x].isdigit():
-            fenNum=int(fen[x])
-            i=0
-            while i < fenNum:
-                chessboard[line].append("")
-                i=i+1
-            x=x+1
-        elif fen[x] == "/":
-            x=x+1
-            line = line + 1
+def get_chessboard():
+    fen = get_fen("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBKQBNR")
+    fen_length = len(fen)
+
+    chessboard = []
+    for line in range(0, fen_length):
+        if fen[line].isdigit():
+            chessboard.append(list(iter(" " * int(fen[line]))))
         else:
-            chessboard[line].append(fen[x])
-            x=x+1
+            chessboard.append(list(iter(fen[line])))
 
     return chessboard
 
 
-def searchpos(pos,chessboard):
-  pos=list(pos)
+def print_chessboard(chessboard):
+    for row in range(len(chessboard)):
+        row_str = ""
+        for col in range(len(chessboard[row])):
+            if col > 0:
+                row_str += "|"
+            row_str += chessboard[row][col]
+        print(row_str)
+
+        if row < len(chessboard):
+            print("-" * (len(chessboard[row]) * 2 - 1))
+
+
+def search_position(pos, chessboard):
+  pos = list(pos)
   cols = "abcdefgh"
   rows = "87654321"
   x = pos[0] in cols
@@ -37,7 +39,7 @@ def searchpos(pos,chessboard):
   return chessboard[y][x]
 
 
-def case(x):
+def switch_case(x):
   uppercase = "QWERTYUIOPASDFGHJKLZXCVBNM"
   lowercase = "qwertyuiopasdfghjklzxcvbnm"
   if x in uppercase:
@@ -48,10 +50,10 @@ def case(x):
     return "none"
 
 
-def legality(startpos,endpos,board):
-  x=searchpos(startpos,board)
-  y=searchpos(endpos,board)
-  if case(x)==case(y) or case(x)=="none":
+def legality(startpos, endpos, board):
+  x = search_position(startpos, board)
+  y = search_position(endpos,board)
+  if switch_case(x) == switch_case(y) or switch_case(x) == "none":
     return False
   else:
     if x.lower == "r" :
@@ -64,13 +66,10 @@ def legality(startpos,endpos,board):
         pass
     elif x.lower == "q":
         pass
-      
+
     return True
 
-if __name__ == "__main__":
-    #rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBKQNR
 
-    #8/8/8/8/8/8/8/8
-    chessboard=getchessboard()
-    for i in chessboard:
-        print(i)
+if __name__ == "__main__":
+    chessboard = get_chessboard()
+    print_chessboard(chessboard)
