@@ -30,44 +30,13 @@ def print_chessboard(chessboard):
 
 
 def search_position(pos, chessboard):
-  pos = list(pos)
-  cols = "abcdefgh"
-  rows = "87654321"
-  x = pos[0] in cols
-  y = pos[1] in rows
+    pos = list(pos)
+    cols = "abcdefgh"
+    rows = "87654321"
+    x = pos[0] in cols
+    y = pos[1] in rows
 
-  return chessboard[y][x]
-
-
-def switch_case(x):
-  uppercase = "QWERTYUIOPASDFGHJKLZXCVBNM"
-  lowercase = "qwertyuiopasdfghjklzxcvbnm"
-  if x in uppercase:
-    return "uppercase"
-  elif x in lowercase:
-    return "lowercase"
-  else:
-    return "none"
-
-
-def legality(startpos, endpos, board):
-  x = search_position(startpos, board)
-  y = search_position(endpos, board)
-  if switch_case(x) == switch_case(y) or switch_case(x) == "none":
-    return False
-  else:
-    if x.lower == "r":
-        pass
-    elif x.lower == "b":
-        pass
-    elif x.lower == "n":
-        pass
-    elif x.lower == "k":
-        pass
-    elif x.lower == "q":
-        pass
-
-    return True
+    return chessboard[y][x]
 
 
 if __name__ == "__main__":
