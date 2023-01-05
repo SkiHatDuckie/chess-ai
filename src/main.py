@@ -1,76 +1,30 @@
-def getchessboard():
-    def getfen():
-        x=list(input())
-        return x
+# Entrypoint of the program
 
+from board import *
+from pieces import *
+from player import *
 
-    fen=getfen()
-    fenlength = len(fen)
-    x=0
-    line = 0
-    chessboard=[[],[],[],[],[],[],[],[]]
-    while x<fenlength:
-        if fen[x].isdigit():
-            fenNum=int(fen[x])
-            i=0
-            while i < fenNum:
-                chessboard[line].append("")
-                i=i+1
-            x=x+1
-        elif fen[x] == "/":
-            x=x+1
-            line = line + 1
-        else:
-            chessboard[line].append(fen[x])
-            x=x+1
-
-    return chessboard
-
-
-def searchpos(pos,chessboard):
-  pos=list(pos)
-  cols = "abcdefgh"
-  rows = "87654321"
-  x = pos[0] in cols
-  y = pos[1] in rows
-
-  return chessboard[y][x]
-
-
-def case(x):
-  uppercase = "QWERTYUIOPASDFGHJKLZXCVBNM"
-  lowercase = "qwertyuiopasdfghjklzxcvbnm"
-  if x in uppercase:
-    return "uppercase"
-  elif x in lowercase:
-    return "lowercase"
-  else:
-    return "none"
-
-
-def legality(startpos,endpos,board):
-  x=searchpos(startpos,board)
-  y=searchpos(endpos,board)
-  if case(x)==case(y) or case(x)=="none":
-    return False
-  else:
-    if x.lower == "r" :
-        pass
-    elif x.lower == "b":
-        pass
-    elif x.lower == "n":
-        pass
-    elif x.lower == "k":
-        pass
-    elif x.lower == "q":
-        pass
-      
-    return True
 
 if __name__ == "__main__":
-    #rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBKQNR
+    chessboard = get_chessboard()
+    # TODO:
+    # player1 = get_player(player_num, player_type)
+    # player2 = get_player(player_num, player_type)
+    # curr_player = player1
 
-    #8/8/8/8/8/8/8/8
-    chessboard=getchessboard()
-    for i in chessboard:
-        print(i)
+    while True:
+        print_chessboard(chessboard)
+        break
+        # TODO:
+        # move = get_move(curr_player)
+        # if ( is_legal_move(curr_player, move) ):
+        #     move_piece(move)
+        # if ( opponent_in_checkmate(curr_player, chessboard) ):
+        #     print_checkmate_message(curr_player)
+        #     end_game(winner)
+        #     break
+        # elif ( opponent_in_check(curr_player, chessboard) ):
+        #     print_check_message(curr_player)
+        # elif ( is_stalemate(curr_player, chessboard) ):
+        #     print_stalemate_message()
+        #     break
