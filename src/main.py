@@ -226,6 +226,7 @@ if __name__ == "__main__":
         
         if who2move == human_player:
             move = get_move(board)
+            print(move)
             board.push(move)
         else:
             move = negamax(board, 1)
